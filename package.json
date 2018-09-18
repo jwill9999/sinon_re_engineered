@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/jwill9999/sinon_re_engineered.git"
   },
   "license": "ISC",
   "devDependencies": {
