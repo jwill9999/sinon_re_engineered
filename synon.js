@@ -1,6 +1,6 @@
-module.exports = Synon = {
+let Synon = {
     /*===========================================
-                    spy function
+                    SPY FUNCTION
     =============================================*/
 
     spy: (obj, name, stub = null) => {
@@ -39,7 +39,7 @@ module.exports = Synon = {
 
 
     /*===========================================
-                    stub function
+                   STUB FUNCTION
     =============================================*/
 
 
@@ -52,3 +52,5 @@ module.exports = Synon = {
 
     
 };
+
+module.exports = Synon;

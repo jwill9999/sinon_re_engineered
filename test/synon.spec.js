@@ -1,115 +1,102 @@
 
  var expect = require('chai').expect;
  var Synon = require('../synon');
- var {
-     test
- } = require('../test');
 
 
-// Declare variables
- var spiedObj;
- var spiedError;
- var a,e,fn;
 
- //CREATE EMPTY OBJ TO HOLD SPY OR STUB
- let spyObj = {};
+// DECLARED VARIABLES
+var spiedObj;
+var spiedError;
+var a, e, fn;
 
-//IMPORT A FUNCTION TO SPY OR STUB  
- a = function a(num) {
+// CREATE EMPTY OBJ TO HOLD SPY OR STUB
+let spyObj = {};
+
+// IMPORT A FUNCTION TO SPY OR STUB  
+a = function a(num) {
     return num + 1;
 };
 
-// Stubbed Error Function for tests
+// STUBBED ERROR FUNC FOR TESTING
 e = () => {
     throw new Error('OMG')
 }
 
-// Stub for testing
+// STUBBED FUNC FOR TESTING
 fn = function mock(num) {
     return num + 20
 }
 
 
 
-
-
-
-
-
-
-
 describe('Synon Re-Engineered Code Module', () => {
 
 
-   describe('Non spied function', () => {
-       beforeEach(function () {
-           spyObj.a = a;
-       })
+    describe('Non spied function', () => {
+        beforeEach(function () {
+            spyObj.a = a;
+        })
 
 
-       it('should say not a spy ', () => {
-           expect(spyObj.a === a).to.be.true;
-       });
-   })
-
-    
-
-
-
-describe('Spied function', () => {
-
-    before(() => {
-        spiedObj = Synon.spy(spyObj, 'a')
-       
+        it('should say not a spy ', () => {
+            expect(spyObj.a === a).to.be.true;
+        });
     })
 
-    it('Not equal to original object', () => {
-        expect(spiedObj !== a).to.be.true;
-    });
+    describe('Spied function', () => {
 
-    it('is a function', () => {
-        expect(typeof spiedObj === 'function').to.be.true;
-    });
+        before(() => {
+            spiedObj = Synon.spy(spyObj, 'a')
 
-    it('has a log', () => {
-        expect(spiedObj.log.length === 0).to.be.true;
-    });
+        })
 
-    it('can call original function', () => {
-        expect(spiedObj(1) === 2).to.be.true;
-    });
+        it('Not equal to original object', () => {
+            expect(spiedObj !== a).to.be.true;
+        });
 
-    it('Log length should increase when called', () => {
-        expect(spiedObj.log.length).to.equal(1);
-    });
+        it('is a function', () => {
+            expect(typeof spiedObj === 'function').to.be.true;
+        });
 
-    it('Arguments are stored', () => {
-        expect(spiedObj.log[0].arguments[0] === 1).to.be.true;
-    });
+        it('has a log', () => {
+            expect(spiedObj.log.length === 0).to.be.true;
+        });
 
-    it('Context is stored ', () => {
-        expect(spiedObj.log[0].context ).to.exist;
-    });
+        it('can call original function', () => {
+            expect(spiedObj(1) === 2).to.be.true;
+        });
 
-    it('returns stored value ', () => {
-        expect(spiedObj.log[0].returns).to.equal(2);
-    });
-})
+        it('Log length should increase when called', () => {
+            expect(spiedObj.log.length).to.equal(1);
+        });
 
-  describe('After Restore function is invoked', () => {
+        it('Arguments are stored', () => {
+            expect(spiedObj.log[0].arguments[0] === 1).to.be.true;
+        });
 
-    before(() => {
-        spiedObj.restore();
+        it('Context is stored ', () => {
+            expect(spiedObj.log[0].context).to.exist;
+        });
+
+        it('returns stored value ', () => {
+            expect(spiedObj.log[0].returns).to.equal(2);
+        });
     })
 
-    it('spy reference restored to original function', () => {
-        expect(spyObj.a === a).to.be.true;
-    });
+    describe('After Restore function is invoked', () => {
 
-    it('spy now does not log after restore function invoked', () => {
-        expect(spiedObj.log.length).to.equal(1);
+        before(() => {
+            spiedObj.restore();
+        })
+
+        it('spy reference restored to original function', () => {
+            expect(spyObj.a === a).to.be.true;
+        });
+
+        it('spy now does not log after restore function invoked', () => {
+            expect(spiedObj.log.length).to.equal(1);
+        });
     });
-  });
 
     describe('If No Errors', () => {
 
@@ -127,17 +114,17 @@ describe('Spied function', () => {
             beforeEach(() => {
                 spiedError();
             })
-    
-            it('ERRORS will be logged', () => {               
+
+            it('ERRORS will be logged', () => {
                 expect(spiedError.log[0].error).not.to.be.undefined;
             });
-            
+
         });
-        
+
     });
 
     describe('Stubbing a function', () => {
-        
+
         before(() => {
             Synon.stub(spyObj, 'a', fn);
         })
@@ -155,10 +142,10 @@ describe('Spied function', () => {
             it('Mock function is restored to original function ', () => {
                 expect(spyObj.a(1)).to.equal(2);
             });
-            
+
         });
     });
 
- 
+
 })
 
