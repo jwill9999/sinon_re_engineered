@@ -1,0 +1,32 @@
+{
+  "name": "sinon_re_engineered",
+  "version": "1.0.0",
+  "description": "teaching package to demonstrate sinon reEngineered code ",
+  "main": "synon.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha  test/synon.spec.js --exit"
+  },
+  "keywords": [
+    "sinon",
+    "reengineered",
+    "testing",
+    "stubs",
+    "spies"
+  ],
+  "author": {
+    "name": "Jason Williams",
+    "email": "jasonwilliams@letuscode.co.uk",
+    "url": "http://letuscode.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2"
+  }
+}
